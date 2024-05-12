@@ -1,3 +1,15 @@
+
+
+Warning: 
+========
+This repository is simply a working fork of the original PyOpenGL repository.
+This fork make just the repo working both on windows and linux.
+
+Original Pypi project : https://pypi.org/project/PyOpenGL/
+
+Repository Pypi project (the one you should install) : https://pypi.org/project/PyOpenGLAlwaysWorking/
+
+
 PyOpenGL and PyOpenGL_Accelerate
 =================================
 
