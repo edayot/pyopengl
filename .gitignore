@@ -11,3 +11,4 @@ accelerate/dist
 mmap-test-data.dat
 .tox
 tests/output.ppm
+.venv

@@ -19,21 +19,19 @@ class smart_install_data(install_data):
 
 extra_commands["install_data"] = smart_install_data
 
-if sys.platform == "win32":
-    # binary versions of GLUT and GLE for Win32 (sigh)
-    DLL_DIRECTORY = os.path.join("OpenGL", "DLLS")
-    datafiles = [
-        (
-            DLL_DIRECTORY,
-            [
-                os.path.join(DLL_DIRECTORY, file)
-                for file in os.listdir(DLL_DIRECTORY)
-                if os.path.isfile(os.path.join(DLL_DIRECTORY, file))
-            ],
-        ),
-    ]
-else:
-    datafiles = []
+# binary versions of GLUT and GLE for Win32 (sigh)
+DLL_DIRECTORY = os.path.join("OpenGL", "DLLS")
+datafiles = [
+    (
+        DLL_DIRECTORY,
+        [
+            os.path.join(DLL_DIRECTORY, file)
+            for file in os.listdir(DLL_DIRECTORY)
+            if os.path.isfile(os.path.join(DLL_DIRECTORY, file))
+        ],
+    ),
+]
+
 
 
 if __name__ == "__main__":
