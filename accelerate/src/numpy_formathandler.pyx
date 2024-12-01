@@ -1,4 +1,5 @@
 """Accelerator for numpy format handler operations"""
+#cython: language_level=3
 from ctypes import c_void_p
 import numpy as np
 cimport numpy as np
@@ -19,7 +20,7 @@ cdef extern from "numpy/arrayobject.h":
     int NPY_ARRAY_FORCECAST
     int PyArray_ISCARRAY( np.ndarray instance )
     int PyArray_ISCARRAY_RO( np.ndarray instance )
-    cdef np.ndarray PyArray_Zeros(int nd, np.Py_intptr_t* dims, np.dtype, int fortran)
+    cdef np.ndarray PyArray_Zeros(int nd, np.npy_intp* dims, np.dtype, int fortran)
     cdef np.ndarray PyArray_EnsureArray(object)
     cdef int PyArray_FillWithScalar(object, object)
     cdef void import_array()
@@ -121,7 +122,7 @@ cdef class NumpyHandler(FormatHandler):
             c_dims = PyArray_ContiguousFromAny( 
                 [int(x) for x in dims], np.NPY_INTP, 1,1 
             )
-        except (ValueError,TypeError), err:
+        except (ValueError,TypeError) as err:
             dims = (int(dims),)
             c_dims = PyArray_ContiguousFromAny( 
                 dims, np.NPY_INTP, 1,1 
